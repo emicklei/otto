@@ -181,8 +181,10 @@ func TestArray_splice(t *testing.T) {
             def = abc.splice(1, 2, 3, 4, 5);
             ghi = [].concat(abc);
             jkl = ghi.splice(17, 21, 7, 8, 9);
-            [ abc, def, ghi, jkl ].join(";");
-        `, "0,3,4,5;1,2;0,3,4,5,7,8,9;")
+            mno = [].concat(abc);
+            pqr = mno.splice(2);
+            [ abc, def, ghi, jkl, mno, pqr ].join(";");
+        `, "0,3,4,5;1,2;0,3,4,5,7,8,9;;0,3;4,5")
 	})
 }
 
@@ -321,9 +323,11 @@ func TestArray_sort(t *testing.T) {
             stu = [1,5,-10, 100, 8, 72, 401, 0.05].sort(function(x, y){
                 return x == y ? 0 : x < y ? -1 : 1
             });
+            vwx = [1,2,3,1,2,3].sort();
+            yza = [1,2,3,1,0,1,-1,0].sort();
 
-            [ abc, def, ghi, jkl, mno, pqr, stu ].join(";");
-        `, "0,1,2,3;0,1,2,3;;0;0,1;-10,0.05,1,100,401,5,72,8;-10,0.05,1,5,8,72,100,401")
+            [ abc, def, ghi, jkl, mno, pqr, stu, vwx, yza ].join(";");
+        `, "0,1,2,3;0,1,2,3;;0;0,1;-10,0.05,1,100,401,5,72,8;-10,0.05,1,5,8,72,100,401;1,1,2,2,3,3;-1,0,0,1,1,1,2,3")
 
 		test(`Array.prototype.sort.length`, 1)
 	})

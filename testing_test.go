@@ -1,11 +1,12 @@
 package otto
 
 import (
-	"./terst"
 	"errors"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/robertkrimen/otto/terst"
 )
 
 func tt(t *testing.T, arguments ...func()) {
@@ -122,7 +123,7 @@ func (self *_tester) test(name string, expect ...interface{}) Value {
 			source = source[6:]
 			source = strings.TrimLeft(source, " ")
 		}
-		value, err = vm.runtime.cmpl_run(source)
+		value, err = vm.runtime.cmpl_run(source, nil)
 		if err != nil {
 			panic(err)
 		}

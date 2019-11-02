@@ -98,6 +98,8 @@ func TestToBoolean(t *testing.T) {
 		//is(toValue(newObject()), true)
 		is(UndefinedValue(), false)
 		is(NullValue(), false)
+		is([]uint16{}, false)
+		is([]uint16{0x68, 0x65, 0x6c, 0x6c, 0x6f}, true)
 	})
 }
 
@@ -236,6 +238,12 @@ func TestExport(t *testing.T) {
 			is(value[4], nil)
 			is(value[5], nil)
 			is(value[5], interface{}(nil))
+		}
+		{
+			value := test(`[ undefined, null ];`).export().([]interface{})
+			is(value[0], nil)
+			is(value[1], nil)
+			is(value[1], interface{}(nil))
 		}
 
 		roundtrip := []interface{}{
